@@ -1,3 +1,9 @@
+## Setting Up Docker for Local Development
+By default, the `compose.yml` file spins up a Postgres image with the required `POSTGRES_PASSWORD` environment variable
+set in your `.env`.
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
