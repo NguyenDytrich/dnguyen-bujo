@@ -17,7 +17,7 @@ type RouteHandler = (
  * If a ZodError occurs, it returns HTTP 400 with the Zod message.
  * Returns HTTP 500 if an error is thrown from the handler.
  */
-export function handleRoute<TBody>(
+export function handleRoute(
   logName: string,
   handler: (
     request: Request | undefined,

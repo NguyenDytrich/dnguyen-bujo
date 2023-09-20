@@ -13,6 +13,7 @@ export interface TaskCreateArgs extends Omit<Task, "id"> {}
 /** Queries */
 const CreateOneQuery = `INSERT INTO tasks("text", notes, createdAt) VALUES ($1, $2, $3)`;
 const SelectById = `SELECT FROM tasks WHERE id=$1`;
+const SelectAll = `SELECT FROM tasks`;
 
 export const TaskController = {
   /**
@@ -29,5 +30,9 @@ export const TaskController = {
   findById: async (id: number): Promise<Task> => {
     const result = await Repository.query(SelectById, [id]);
     return result.rows[0];
+  },
+  findAll: async (): Promise<Task[]> => {
+    const result = await Repository.query(SelectAll, []);
+    return result.rows;
   },
 };
