@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db-util": "ts-node tools/db-util.ts"
   },
   "dependencies": {
     "@types/node": "20.6.0",
@@ -28,6 +29,9 @@
   },
   "devDependencies": {
     "@types/luxon": "^3.3.2",
-    "@types/pg": "^8.10.2"
+    "@types/pg": "^8.10.2",
+    "commander": "^11.0.0",
+    "dotenv": "^16.3.1",
+    "ts-node": "^10.9.1"
   }
 }
