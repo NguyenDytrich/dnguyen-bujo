@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { Postgres, Repository } from "../postgres.const";
+import { IRepository } from "../../repository.class";
 
 /** Types */
 export interface Task {
@@ -15,24 +15,28 @@ const CreateOneQuery = `INSERT INTO tasks("text", notes, createdAt) VALUES ($1, 
 const SelectById = `SELECT FROM tasks WHERE id=$1`;
 const SelectAll = `SELECT FROM tasks`;
 
-export const TaskController = {
+/** Exported for unit testing */
+export class _TaskController {
+  constructor(private readonly repository: IRepository) {}
   /**
    * Inserts a new task into the database. If no `createdAt` time is specified, the current timestamp will be used.
    */
-  createOne: async (args: TaskCreateArgs): Promise<Task> => {
-    const result = await Postgres.query(CreateOneQuery, [
+  async createOne(args: TaskCreateArgs): Promise<Task> {
+    const result = await this.repository.query(CreateOneQuery, [
       args.text,
       args.notes,
-      args.createdAt,
+      args.createdAt?.toUTC().toString(),
     ]);
     return result.rows[0];
-  },
-  findById: async (id: number): Promise<Task> => {
-    const result = await Repository.query(SelectById, [id]);
+  }
+
+  async findById(id: number): Promise<Task> {
+    const result = await this.repository.query(SelectById, [id]);
     return result.rows[0];
-  },
-  findAll: async (): Promise<Task[]> => {
-    const result = await Repository.query(SelectAll, []);
+  }
+
+  async findAll(): Promise<Task[]> {
+    const result = await this.repository.query(SelectAll, []);
     return result.rows;
-  },
-};
+  }
+}
