@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:unit": "jest ./tests/unit",
+    "test:unit": "jest -c=./jest.unit.config.js ./tests/unit",
+    "test:integration": "jest -c=./jest.integration.config.js ./tests/integration",
     "db-util": "ts-node tools/db-util.ts"
   },
   "dependencies": {

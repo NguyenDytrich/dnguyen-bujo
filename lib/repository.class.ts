@@ -29,4 +29,15 @@ export class _PgRepository implements IRepository {
       profiler.done({ message: "Completed" });
     }
   }
+
+  /**
+   * Used to manually shutdown the pool.
+   * 
+   * Note: there are no protections against calling `_PgRepository.query()`
+   * after the pool has disconnected, and an error will be raised.
+   */
+  async _close() {
+    this.logger.info("Closing connection...");
+    await this.pool.end();
+  }
 }

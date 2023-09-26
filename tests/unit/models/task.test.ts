@@ -15,6 +15,7 @@ const MockRepository = {
       })
     );
   }),
+  close: jest.fn(),
 };
 
 describe("TaskController.createOne", () => {
