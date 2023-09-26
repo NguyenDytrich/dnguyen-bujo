@@ -2,6 +2,22 @@
 By default, the `compose.yml` file spins up a Postgres image with the required `POSTGRES_PASSWORD` environment variable
 set in your `.env`.
 
+## Running Tests
+Unit tests: `npm run test:unit`
+
+### Integration tests
+Make sure that you have your Docker compose up.
+
+The global setup for integration tests will read from `.env` by default. It expects the following:
+
+```bash
+# If you configured a different POSTGRES_USER for your Docker container set it here
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=<your-pass>
+POSTGRES_HOST=localhost
+```
+
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
